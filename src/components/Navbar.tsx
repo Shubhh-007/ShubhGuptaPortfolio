@@ -38,7 +38,7 @@ export function Navbar() {
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
           <Link to="/" className="font-display text-2xl tracking-widest">
-            LA <span className="text-heist-red">CASA</span>
+            LA CASA DE <span className="text-heist-red">PAPEL</span>
           </Link>
           <nav className="hidden lg:flex items-center gap-8">
             {links.map((l) => (
@@ -73,7 +73,7 @@ export function Navbar() {
             className="fixed inset-0 z-[100] bg-background/98 backdrop-blur-2xl flex flex-col"
           >
             <div className="flex justify-between items-center px-6 py-4">
-              <span className="font-display text-2xl tracking-widest">LA <span className="text-heist-red">CASA</span></span>
+              <span className="font-display text-2xl tracking-widest">LA CASA DE <span className="text-heist-red">PAPEL</span></span>
               <button onClick={() => setOpen(false)} className="p-2 text-foreground"><X className="w-7 h-7" /></button>
             </div>
             <nav className="flex-1 flex flex-col items-center justify-center gap-8">

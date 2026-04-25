@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Send, Mail, MapPin, Github } from "lucide-react";
+import { Send, Mail, MapPin, Github, Phone, Linkedin } from "lucide-react";
 import { PageTransition } from "@/components/PageTransition";
 import { Reveal } from "@/components/Reveal";
 
@@ -27,30 +27,44 @@ function Contact() {
         <div className="relative grid md:grid-cols-2 gap-16 items-start">
           <div>
             <Reveal>
-              <p className="font-display text-xs tracking-[0.5em] text-heist-red mb-3">▎ FILE 06 · HELSINKI</p>
+              <p className="font-display text-xs tracking-[0.5em] text-heist-red mb-3">▎ FILE 06 · INITIATE</p>
               <h1 className="font-display text-6xl md:text-9xl leading-[0.9] tracking-tight">JOIN THE<br/><span className="text-heist-red text-glow-red">HEIST</span>.</h1>
             </Reveal>
 
             <Reveal delay={0.1} className="mt-10 space-y-6 text-muted-foreground">
-              <p className="text-lg leading-relaxed">Got a plan? A project? An impossible idea? The crew is recruiting. Drop a message and I'll get back faster than the police can react.</p>
+              <p className="text-lg leading-relaxed">Got a plan? A project? An impossible idea? Drop a message and let's build something production-ready together.</p>
             </Reveal>
 
             <Reveal delay={0.2} className="mt-12 space-y-5">
               {[
-                { icon: Mail, label: "Email", val: "professor@heist.dev" },
-                { icon: MapPin, label: "Base", val: "Hidden in plain sight" },
-                { icon: Github, label: "Code", val: "github.com/professor" },
-              ].map((c) => (
-                <div key={c.label} className="flex items-center gap-4 group">
-                  <div className="w-12 h-12 flex items-center justify-center border border-border bg-card group-hover:border-heist-red group-hover:glow-red transition">
-                    <c.icon className="w-5 h-5 text-heist-red" />
+                { icon: Mail, label: "Email", val: "shubhgupta1707@gmail.com", href: "mailto:shubhgupta1707@gmail.com" },
+                { icon: Phone, label: "Phone", val: "+91-75719-21707", href: "tel:+917571921707" },
+                { icon: MapPin, label: "Base", val: "Greater Noida, UP" },
+                { icon: Linkedin, label: "Network", val: "LinkedIn Profile", href: "https://www.linkedin.com/in/shubhgupta1707" },
+                { icon: Github, label: "Code", val: "github.com/Shubhh-007", href: "https://github.com/Shubhh-007" },
+              ].map((c) => {
+                const inner = (
+                  <>
+                    <div className="w-12 h-12 flex shrink-0 items-center justify-center border border-border bg-card group-hover:border-heist-red group-hover:glow-red transition">
+                      <c.icon className="w-5 h-5 text-heist-red" />
+                    </div>
+                    <div>
+                      <p className="font-display text-[10px] tracking-[0.4em] text-muted-foreground">{c.label.toUpperCase()}</p>
+                      <p className="font-body text-foreground group-hover:text-heist-red transition">{c.val}</p>
+                    </div>
+                  </>
+                );
+
+                return c.href ? (
+                  <a key={c.label} href={c.href} target={c.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" className="flex items-center gap-4 group">
+                    {inner}
+                  </a>
+                ) : (
+                  <div key={c.label} className="flex items-center gap-4 group">
+                    {inner}
                   </div>
-                  <div>
-                    <p className="font-display text-[10px] tracking-[0.4em] text-muted-foreground">{c.label.toUpperCase()}</p>
-                    <p className="font-body text-foreground">{c.val}</p>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </Reveal>
           </div>
 
@@ -65,7 +79,7 @@ function Contact() {
               {sent ? (
                 <div className="py-12 text-center">
                   <p className="font-display text-3xl text-heist-red text-glow-red">MESSAGE RECEIVED</p>
-                  <p className="mt-3 text-muted-foreground">The Professor is reviewing the plan. Stay close to the radio.</p>
+                  <p className="mt-3 text-muted-foreground">Shubh is reviewing the plan. Stay close to the radio.</p>
                 </div>
               ) : (
                 <>
