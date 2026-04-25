@@ -197,6 +197,38 @@ function About() {
           <div className="hidden md:block">{clock}</div>
         </div>
 
+        {/* checkpoint rail — mask decryption progress */}
+        <div className="pointer-events-none fixed right-4 md:right-6 top-1/2 -translate-y-1/2 z-[70] flex flex-col items-end gap-4 font-mono text-[9px] tracking-[0.3em]">
+          {["TRACE", "FAINT", "PARTIAL", "UNMASKED"].map((label, i) => {
+            const reached = activeCP >= i;
+            return (
+              <div key={label} className="flex items-center gap-3">
+                <span className={`transition-all duration-500 ${reached ? "text-heist-red opacity-100" : "text-muted-foreground/40 opacity-60"}`}>
+                  CP_0{i + 1} · {label}
+                </span>
+                <span
+                  className={`relative w-3 h-3 border transition-all duration-500 ${reached ? "border-heist-red bg-heist-red" : "border-muted-foreground/40 bg-transparent"}`}
+                  style={reached ? { boxShadow: "0 0 12px #E50914, 0 0 24px rgba(229,9,20,0.6)" } : undefined}
+                >
+                  {reached && i === activeCP && (
+                    <span className="absolute inset-0 border border-heist-red animate-ping" />
+                  )}
+                </span>
+              </div>
+            );
+          })}
+          <div className="w-px h-24 bg-gradient-to-b from-heist-red/60 to-transparent mr-[5px]" />
+        </div>
+
+        {/* checkpoint flash — full-screen red pulse when CP4 hits */}
+        <motion.div
+          key={activeCP}
+          initial={{ opacity: 0 }}
+          animate={activeCP === 3 ? { opacity: [0, 0.35, 0] } : { opacity: 0 }}
+          transition={{ duration: 0.6 }}
+          className="pointer-events-none fixed inset-0 z-[68] bg-heist-red mix-blend-screen"
+        />
+
         {/* ============ ACT 1 — HERO HALLWAY ============ */}
         <section className="relative h-[100vh] overflow-hidden flex items-end pb-20 md:pb-32">
           <motion.div className="absolute inset-0" style={{ scale: heroScale, opacity: heroOpacity, filter: useTransform(heroBlur, (v) => `blur(${v})`) }}>
