@@ -4,6 +4,11 @@ import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import { PageTransition } from "@/components/PageTransition";
 import { Reveal } from "@/components/Reveal";
+import vault from "@/assets/vault.jpg";
+import heistRoom from "@/assets/heist-room.jpg";
+import blueprint from "@/assets/blueprint.jpg";
+import mask from "@/assets/mask.jpg";
+import berlin from "@/assets/berlin.jpg";
 
 export const Route = createFileRoute("/projects")({
   head: () => ({
@@ -18,12 +23,12 @@ export const Route = createFileRoute("/projects")({
 });
 
 const projects = [
-  { title: "The Mint", tag: "Fintech Platform", desc: "Real-time trading dashboard with edge-rendered charts and sub-100ms updates.", color: "from-red-900 to-black" },
-  { title: "Bella Ciao", tag: "Music Streaming", desc: "Cinematic streaming app with AI-curated playlists and offline-first architecture.", color: "from-rose-900 to-black" },
-  { title: "Royal Mint", tag: "E-Commerce", desc: "Headless storefront pulling 500K monthly visitors with sub-second LCP.", color: "from-red-950 to-zinc-900" },
-  { title: "The Vault", tag: "Password Manager", desc: "Zero-knowledge encrypted vault with biometric unlock across all devices.", color: "from-amber-900 to-black" },
-  { title: "Operation Paris", tag: "Travel SaaS", desc: "AI itinerary builder used by 40K travelers. Optimized for chaos.", color: "from-red-800 to-zinc-950" },
-  { title: "El Plan", tag: "Project OS", desc: "Internal tool that orchestrates teams, deadlines, and chaos. Mission control.", color: "from-stone-900 to-black" },
+  { title: "The Mint", tag: "Fintech Platform", desc: "Real-time trading dashboard with edge-rendered charts and sub-100ms updates.", img: vault },
+  { title: "Bella Ciao", tag: "Music Streaming", desc: "Cinematic streaming app with AI-curated playlists and offline-first architecture.", img: mask },
+  { title: "Royal Mint", tag: "E-Commerce", desc: "Headless storefront pulling 500K monthly visitors with sub-second LCP.", img: heistRoom },
+  { title: "The Vault", tag: "Password Manager", desc: "Zero-knowledge encrypted vault with biometric unlock across all devices.", img: vault },
+  { title: "Operation Paris", tag: "Travel SaaS", desc: "AI itinerary builder used by 40K travelers. Optimized for chaos.", img: berlin },
+  { title: "El Plan", tag: "Project OS", desc: "Internal tool that orchestrates teams, deadlines, and chaos. Mission control.", img: blueprint },
 ];
 
 function Projects() {
@@ -48,8 +53,9 @@ function Projects() {
           <motion.div style={{ x }} className="flex gap-6 pl-6">
             {projects.map((p, i) => (
               <article key={p.title} className="group relative shrink-0 w-[85vw] md:w-[60vw] lg:w-[50vw] h-[70vh] border border-border bg-card overflow-hidden hover-heist">
-                <div className={`absolute inset-0 bg-gradient-to-br ${p.color}`} />
-                <div className="absolute inset-0" style={{ background: "radial-gradient(circle at 70% 30%, rgba(229,9,20,0.35), transparent 60%)" }} />
+                <img src={p.img} alt={p.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500" style={{ background: "radial-gradient(circle at 70% 30%, rgba(229,9,20,0.4), transparent 60%)" }} />
                 <div className="absolute top-6 left-6 right-6 flex justify-between font-display text-[10px] tracking-[0.4em] text-muted-foreground">
                   <span>HEIST 0{i + 1}</span>
                   <span className="text-heist-red">CLASSIFIED</span>
@@ -62,7 +68,7 @@ function Projects() {
                   <h3 className="font-display text-4xl md:text-6xl tracking-tight">{p.title}</h3>
                   <p className="mt-3 text-sm text-muted-foreground max-w-md">{p.desc}</p>
                   <button className="mt-5 inline-flex items-center gap-2 font-display text-xs tracking-[0.3em] text-foreground hover:text-heist-red transition">
-                    VIEW HEIST <ArrowRight className="w-3 h-3" />
+                    VIEW OPERATION <ArrowRight className="w-3 h-3" />
                   </button>
                 </div>
               </article>
