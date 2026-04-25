@@ -1,0 +1,109 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import { Send, Mail, MapPin, Github } from "lucide-react";
+import { PageTransition } from "@/components/PageTransition";
+import { Reveal } from "@/components/Reveal";
+
+export const Route = createFileRoute("/contact")({
+  head: () => ({
+    meta: [
+      { title: "Helsinki — Contact | The Professor" },
+      { name: "description", content: "Join the heist. Get in touch with the Professor." },
+      { property: "og:title", content: "Helsinki — Contact" },
+      { property: "og:description", content: "Join the heist." },
+    ],
+  }),
+  component: Contact,
+});
+
+function Contact() {
+  const [sent, setSent] = useState(false);
+
+  return (
+    <PageTransition>
+      <section className="relative max-w-7xl mx-auto px-6 py-20 md:py-32">
+        <div className="absolute top-1/3 right-0 w-[40vw] h-[40vw] rounded-full blur-[140px] opacity-40 pointer-events-none" style={{ background: "radial-gradient(circle, rgba(229,9,20,0.5), transparent 70%)" }} />
+
+        <div className="relative grid md:grid-cols-2 gap-16 items-start">
+          <div>
+            <Reveal>
+              <p className="font-display text-xs tracking-[0.5em] text-heist-red mb-3">▎ FILE 06 · HELSINKI</p>
+              <h1 className="font-display text-6xl md:text-9xl leading-[0.9] tracking-tight">JOIN THE<br/><span className="text-heist-red text-glow-red">HEIST</span>.</h1>
+            </Reveal>
+
+            <Reveal delay={0.1} className="mt-10 space-y-6 text-muted-foreground">
+              <p className="text-lg leading-relaxed">Got a plan? A project? An impossible idea? The crew is recruiting. Drop a message and I'll get back faster than the police can react.</p>
+            </Reveal>
+
+            <Reveal delay={0.2} className="mt-12 space-y-5">
+              {[
+                { icon: Mail, label: "Email", val: "professor@heist.dev" },
+                { icon: MapPin, label: "Base", val: "Hidden in plain sight" },
+                { icon: Github, label: "Code", val: "github.com/professor" },
+              ].map((c) => (
+                <div key={c.label} className="flex items-center gap-4 group">
+                  <div className="w-12 h-12 flex items-center justify-center border border-border bg-card group-hover:border-heist-red group-hover:glow-red transition">
+                    <c.icon className="w-5 h-5 text-heist-red" />
+                  </div>
+                  <div>
+                    <p className="font-display text-[10px] tracking-[0.4em] text-muted-foreground">{c.label.toUpperCase()}</p>
+                    <p className="font-body text-foreground">{c.val}</p>
+                  </div>
+                </div>
+              ))}
+            </Reveal>
+          </div>
+
+          <Reveal delay={0.15}>
+            <form
+              onSubmit={(e) => { e.preventDefault(); setSent(true); }}
+              className="relative p-8 md:p-10 backdrop-blur-xl bg-card/40 border border-border space-y-6"
+              style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.04)" }}
+            >
+              <div className="absolute -top-3 left-8 px-3 bg-background font-display text-xs tracking-[0.4em] text-heist-red">▎ TRANSMISSION</div>
+
+              {sent ? (
+                <div className="py-12 text-center">
+                  <p className="font-display text-3xl text-heist-red text-glow-red">MESSAGE RECEIVED</p>
+                  <p className="mt-3 text-muted-foreground">The Professor is reviewing the plan. Stay close to the radio.</p>
+                </div>
+              ) : (
+                <>
+                  <Field label="Codename" name="name" placeholder="Your name" />
+                  <Field label="Channel" name="email" type="email" placeholder="you@email.com" />
+                  <div>
+                    <label className="font-display text-[10px] tracking-[0.4em] text-muted-foreground">MESSAGE</label>
+                    <textarea
+                      required rows={5}
+                      placeholder="Outline the heist..."
+                      className="mt-2 w-full bg-input/50 border border-border px-4 py-3 text-foreground font-body focus:outline-none focus:border-heist-red focus:glow-red transition resize-none"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="group w-full inline-flex items-center justify-center gap-3 bg-red-grad px-8 py-4 font-display text-sm tracking-[0.3em] text-primary-foreground glow-red hover:glow-red-strong transition"
+                  >
+                    SEND TRANSMISSION
+                    <Send className="w-4 h-4 group-hover:translate-x-1 transition" />
+                  </button>
+                </>
+              )}
+            </form>
+          </Reveal>
+        </div>
+      </section>
+    </PageTransition>
+  );
+}
+
+function Field({ label, name, type = "text", placeholder }: { label: string; name: string; type?: string; placeholder?: string }) {
+  return (
+    <div>
+      <label htmlFor={name} className="font-display text-[10px] tracking-[0.4em] text-muted-foreground">{label.toUpperCase()}</label>
+      <input
+        id={name} name={name} type={type} required placeholder={placeholder}
+        className="mt-2 w-full bg-input/50 border border-border px-4 py-3 text-foreground font-body focus:outline-none focus:border-heist-red focus:glow-red transition"
+      />
+    </div>
+  );
+}
