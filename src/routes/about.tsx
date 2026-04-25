@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { PageTransition } from "@/components/PageTransition";
 import { Reveal } from "@/components/Reveal";
+import berlin from "@/assets/berlin.jpg";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -31,12 +32,17 @@ function About() {
 
         <div className="grid md:grid-cols-5 gap-12 items-start">
           <div className="md:col-span-3 md:sticky md:top-32">
-            <motion.div style={{ y: imgY }} className="relative aspect-[3/4] overflow-hidden border border-border">
-              <div className="absolute inset-0 bg-gradient-to-br from-secondary via-card to-background" />
-              <div className="absolute inset-0" style={{ background: "radial-gradient(circle at 30% 30%, rgba(229,9,20,0.25), transparent 65%)" }} />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="font-display text-[12rem] md:text-[18rem] leading-none text-heist-red/20">P</span>
-              </div>
+            <motion.div style={{ y: imgY }} className="relative aspect-[3/4] overflow-hidden border border-border group">
+              <img
+                src={berlin}
+                alt="The Professor in shadow"
+                width={1280}
+                height={1600}
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
+              <div className="absolute inset-0" style={{ background: "radial-gradient(circle at 30% 30%, rgba(229,9,20,0.2), transparent 65%)" }} />
               <div className="absolute bottom-6 left-6 right-6 flex justify-between font-display text-xs tracking-[0.3em] text-muted-foreground">
                 <span>SUBJECT 001</span>
                 <span className="text-heist-red">ACTIVE</span>

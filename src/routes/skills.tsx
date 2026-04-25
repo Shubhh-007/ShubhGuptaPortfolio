@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
+import { useRef, type MouseEvent } from "react";
 import { PageTransition } from "@/components/PageTransition";
 import { Reveal } from "@/components/Reveal";
 import { Code2, Server, Wrench } from "lucide-react";
@@ -65,22 +66,7 @@ function Skills() {
               <div className="grid md:grid-cols-2 gap-5">
                 {g.items.map((s, i) => (
                   <Reveal key={s.name} delay={i * 0.06}>
-                    <div className="group p-6 bg-card border border-border hover-heist">
-                      <div className="flex justify-between items-baseline mb-4">
-                        <h3 className="font-display text-xl tracking-wide">{s.name}</h3>
-                        <span className="font-display text-sm text-heist-red tabular-nums">{s.level}%</span>
-                      </div>
-                      <div className="h-[3px] bg-secondary overflow-hidden">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${s.level}%` }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-                          className="h-full bg-red-grad"
-                          style={{ boxShadow: "0 0 12px rgba(229,9,20,0.6)" }}
-                        />
-                      </div>
-                    </div>
+                    <TiltCard name={s.name} level={s.level} />
                   </Reveal>
                 ))}
               </div>
@@ -89,5 +75,44 @@ function Skills() {
         </div>
       </section>
     </PageTransition>
+  );
+}
+
+function TiltCard({ name, level }: { name: string; level: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const onMove = (e: MouseEvent<HTMLDivElement>) => {
+    const el = ref.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    el.style.transform = `perspective(800px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateZ(0)`;
+  };
+  const onLeave = () => {
+    const el = ref.current;
+    if (el) el.style.transform = "perspective(800px) rotateY(0) rotateX(0)";
+  };
+  return (
+    <div
+      ref={ref}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      className="group p-6 bg-card border border-border hover-heist transition-transform duration-200 will-change-transform"
+    >
+      <div className="flex justify-between items-baseline mb-4">
+        <h3 className="font-display text-xl tracking-wide">{name}</h3>
+        <span className="font-display text-sm text-heist-red tabular-nums">{level}%</span>
+      </div>
+      <div className="h-[3px] bg-secondary overflow-hidden">
+        <motion.div
+          initial={{ width: 0 }}
+          whileInView={{ width: `${level}%` }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+          className="h-full bg-red-grad"
+          style={{ boxShadow: "0 0 12px rgba(229,9,20,0.6)" }}
+        />
+      </div>
+    </div>
   );
 }
