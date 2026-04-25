@@ -95,10 +95,34 @@ function About() {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.35], [0.9, 0]);
   const heroBlur = useTransform(scrollYProgress, [0, 0.4], ["0px", "8px"]);
   const darken = useTransform(scrollYProgress, [0, 1], [0.4, 0.92]);
-  const maskOpacity = useTransform(scrollYProgress, [0.55, 0.95], [0, 0.85]);
-  const maskScale = useTransform(scrollYProgress, [0.55, 1], [1.4, 1]);
-  const finalText = useTransform(scrollYProgress, [0.78, 0.92], [0, 1]);
-  const finalY = useTransform(scrollYProgress, [0.78, 0.92], [40, 0]);
+
+  /* ---------- CHECKPOINT SYSTEM ----------
+   * CP1 0.40 — mask trace appears (5%)
+   * CP2 0.60 — mask faint (15%)
+   * CP3 0.78 — mask half visible (45%)
+   * CP4 0.86 — mask FULLY visible (100%) — locks in BEFORE final line
+   * CP5 0.90 — final line reveal begins
+   */
+  const CHECKPOINTS = [0.4, 0.6, 0.78, 0.86];
+  const maskOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.4, 0.6, 0.78, 0.86, 1],
+    [0, 0.05, 0.15, 0.45, 1, 1]
+  );
+  const maskScale = useTransform(scrollYProgress, [0.4, 0.86], [1.5, 1]);
+  const maskBlur = useTransform(scrollYProgress, [0.4, 0.86], [12, 0]);
+  const maskFilter = useTransform(maskBlur, (v) => `blur(${v}px)`);
+  const finalText = useTransform(scrollYProgress, [0.88, 0.96], [0, 1]);
+  const finalY = useTransform(scrollYProgress, [0.88, 0.96], [40, 0]);
+
+  // checkpoint flash trigger
+  const [activeCP, setActiveCP] = useState(-1);
+  useEffect(() => {
+    return scrollYProgress.on("change", (v) => {
+      const idx = CHECKPOINTS.reduce((acc, cp, i) => (v >= cp ? i : acc), -1);
+      setActiveCP((prev) => (prev !== idx ? idx : prev));
+    });
+  }, [scrollYProgress]);
 
   // mouse parallax
   const mx = useMotionValue(0);
