@@ -95,10 +95,34 @@ function About() {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.35], [0.9, 0]);
   const heroBlur = useTransform(scrollYProgress, [0, 0.4], ["0px", "8px"]);
   const darken = useTransform(scrollYProgress, [0, 1], [0.4, 0.92]);
-  const maskOpacity = useTransform(scrollYProgress, [0.55, 0.95], [0, 0.85]);
-  const maskScale = useTransform(scrollYProgress, [0.55, 1], [1.4, 1]);
-  const finalText = useTransform(scrollYProgress, [0.78, 0.92], [0, 1]);
-  const finalY = useTransform(scrollYProgress, [0.78, 0.92], [40, 0]);
+
+  /* ---------- CHECKPOINT SYSTEM ----------
+   * CP1 0.40 — mask trace appears (5%)
+   * CP2 0.60 — mask faint (15%)
+   * CP3 0.78 — mask half visible (45%)
+   * CP4 0.86 — mask FULLY visible (100%) — locks in BEFORE final line
+   * CP5 0.90 — final line reveal begins
+   */
+  const CHECKPOINTS = [0.4, 0.6, 0.78, 0.86];
+  const maskOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.4, 0.6, 0.78, 0.86, 1],
+    [0, 0.05, 0.15, 0.45, 1, 1]
+  );
+  const maskScale = useTransform(scrollYProgress, [0.4, 0.86], [1.5, 1]);
+  const maskBlur = useTransform(scrollYProgress, [0.4, 0.86], [12, 0]);
+  const maskFilter = useTransform(maskBlur, (v) => `blur(${v}px)`);
+  const finalText = useTransform(scrollYProgress, [0.88, 0.96], [0, 1]);
+  const finalY = useTransform(scrollYProgress, [0.88, 0.96], [40, 0]);
+
+  // checkpoint flash trigger
+  const [activeCP, setActiveCP] = useState(-1);
+  useEffect(() => {
+    return scrollYProgress.on("change", (v) => {
+      const idx = CHECKPOINTS.reduce((acc, cp, i) => (v >= cp ? i : acc), -1);
+      setActiveCP((prev) => (prev !== idx ? idx : prev));
+    });
+  }, [scrollYProgress]);
 
   // mouse parallax
   const mx = useMotionValue(0);
@@ -172,6 +196,38 @@ function About() {
           </div>
           <div className="hidden md:block">{clock}</div>
         </div>
+
+        {/* checkpoint rail — mask decryption progress */}
+        <div className="pointer-events-none fixed right-4 md:right-6 top-1/2 -translate-y-1/2 z-[70] flex flex-col items-end gap-4 font-mono text-[9px] tracking-[0.3em]">
+          {["TRACE", "FAINT", "PARTIAL", "UNMASKED"].map((label, i) => {
+            const reached = activeCP >= i;
+            return (
+              <div key={label} className="flex items-center gap-3">
+                <span className={`transition-all duration-500 ${reached ? "text-heist-red opacity-100" : "text-muted-foreground/40 opacity-60"}`}>
+                  CP_0{i + 1} · {label}
+                </span>
+                <span
+                  className={`relative w-3 h-3 border transition-all duration-500 ${reached ? "border-heist-red bg-heist-red" : "border-muted-foreground/40 bg-transparent"}`}
+                  style={reached ? { boxShadow: "0 0 12px #E50914, 0 0 24px rgba(229,9,20,0.6)" } : undefined}
+                >
+                  {reached && i === activeCP && (
+                    <span className="absolute inset-0 border border-heist-red animate-ping" />
+                  )}
+                </span>
+              </div>
+            );
+          })}
+          <div className="w-px h-24 bg-gradient-to-b from-heist-red/60 to-transparent mr-[5px]" />
+        </div>
+
+        {/* checkpoint flash — full-screen red pulse when CP4 hits */}
+        <motion.div
+          key={activeCP}
+          initial={{ opacity: 0 }}
+          animate={activeCP === 3 ? { opacity: [0, 0.35, 0] } : { opacity: 0 }}
+          transition={{ duration: 0.6 }}
+          className="pointer-events-none fixed inset-0 z-[68] bg-heist-red mix-blend-screen"
+        />
 
         {/* ============ ACT 1 — HERO HALLWAY ============ */}
         <section className="relative h-[100vh] overflow-hidden flex items-end pb-20 md:pb-32">
@@ -294,7 +350,7 @@ function About() {
                 alt=""
                 aria-hidden
                 className="absolute inset-0 w-full h-full object-contain p-8 pointer-events-none mix-blend-screen invert"
-                style={{ opacity: maskOpacity, scale: maskScale }}
+                style={{ opacity: maskOpacity, scale: maskScale, filter: maskFilter }}
               />
 
               {/* gradient + red wash */}
@@ -382,7 +438,7 @@ function About() {
               alt=""
               aria-hidden
               className="absolute inset-0 w-full h-full object-contain p-12 md:p-32 mix-blend-screen invert"
-              style={{ opacity: maskOpacity, scale: maskScale }}
+              style={{ opacity: maskOpacity, scale: maskScale, filter: maskFilter }}
             />
             <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at center, transparent 20%, #000 80%)" }} />
             <motion.div
