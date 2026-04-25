@@ -318,7 +318,7 @@ function About() {
                 alt=""
                 aria-hidden
                 className="absolute inset-0 w-full h-full object-contain p-8 pointer-events-none mix-blend-screen invert"
-                style={{ opacity: maskOpacity, scale: maskScale }}
+                style={{ opacity: maskOpacity, scale: maskScale, filter: maskFilter }}
               />
 
               {/* gradient + red wash */}
@@ -406,7 +406,7 @@ function About() {
               alt=""
               aria-hidden
               className="absolute inset-0 w-full h-full object-contain p-12 md:p-32 mix-blend-screen invert"
-              style={{ opacity: maskOpacity, scale: maskScale }}
+              style={{ opacity: maskOpacity, scale: maskScale, filter: maskFilter }}
             />
             <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at center, transparent 20%, #000 80%)" }} />
             <motion.div
