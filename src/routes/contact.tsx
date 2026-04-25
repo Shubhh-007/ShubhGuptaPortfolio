@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Send, Mail, MapPin, Github } from "lucide-react";
+import { Send, Mail, MapPin, Github, Linkedin, FileDown } from "lucide-react";
 import { PageTransition } from "@/components/PageTransition";
 import { Reveal } from "@/components/Reveal";
 
@@ -37,9 +37,10 @@ function Contact() {
 
             <Reveal delay={0.2} className="mt-12 space-y-5">
               {[
-                { icon: Mail, label: "Email", val: "professor@heist.dev" },
-                { icon: MapPin, label: "Base", val: "Hidden in plain sight" },
-                { icon: Github, label: "Code", val: "github.com/professor" },
+                { icon: Mail, label: "Email", val: "shubhgupta1707@gmail.com", href: "mailto:shubhgupta1707@gmail.com" },
+                { icon: MapPin, label: "Base", val: "Greater Noida, Uttar Pradesh" },
+                { icon: Github, label: "Code", val: "https://github.com/Shubhh-007", href: "https://github.com/Shubhh-007" },
+                { icon: Linkedin, label: "LinkedIn", val: "www.linkedin.com/in/shubhh-gupta", href: "https://www.linkedin.com/in/shubhh-gupta" },
               ].map((c) => (
                 <div key={c.label} className="flex items-center gap-4 group">
                   <div className="w-12 h-12 flex items-center justify-center border border-border bg-card group-hover:border-heist-red group-hover:glow-red transition">
@@ -47,10 +48,36 @@ function Contact() {
                   </div>
                   <div>
                     <p className="font-display text-[10px] tracking-[0.4em] text-muted-foreground">{c.label.toUpperCase()}</p>
-                    <p className="font-body text-foreground">{c.val}</p>
+                    {c.href ? (
+                      <a
+                        href={c.href}
+                        target={c.href.startsWith("http") ? "_blank" : undefined}
+                        rel={c.href.startsWith("http") ? "noreferrer" : undefined}
+                        onClick={() => {
+                          if (c.href?.startsWith("mailto:")) {
+                            window.location.href = c.href;
+                          }
+                        }}
+                        className="font-body text-foreground hover:text-heist-red transition cursor-pointer"
+                      >
+                        {c.val}
+                      </a>
+                    ) : (
+                      <p className="font-body text-foreground">{c.val}</p>
+                    )}
                   </div>
                 </div>
               ))}
+
+              <a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-3 mt-2 border border-heist-red/60 px-5 py-3 font-display text-xs tracking-[0.3em] text-heist-red hover:bg-heist-red hover:text-primary-foreground transition"
+              >
+                <FileDown className="w-4 h-4" />
+                DOWNLOAD RESUME
+              </a>
             </Reveal>
           </div>
 
