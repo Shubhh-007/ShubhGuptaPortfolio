@@ -13,9 +13,9 @@ import vault from "@/assets/vault.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "The Professor — Mastermind Behind Code" },
+      { title: "Shubh Gupta — Full Stack Developer" },
       { name: "description", content: "Enter the heist. A cinematic portfolio of code, craft, and chaos." },
-      { property: "og:title", content: "The Professor — Mastermind Behind Code" },
+      { property: "og:title", content: "Shubh Gupta — Full Stack Developer" },
       { property: "og:description", content: "Enter the heist. A cinematic portfolio." },
     ],
   }),

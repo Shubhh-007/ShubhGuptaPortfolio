@@ -7,7 +7,7 @@ import { Reveal } from "@/components/Reveal";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Helsinki — Contact | The Professor" },
+      { title: "Helsinki — Contact | Shubh Gupta" },
       { name: "description", content: "Join the heist. Get in touch with the Professor." },
       { property: "og:title", content: "Helsinki — Contact" },
       { property: "og:description", content: "Join the heist." },

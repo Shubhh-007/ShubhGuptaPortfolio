@@ -13,7 +13,7 @@ import berlin from "@/assets/berlin.jpg";
 export const Route = createFileRoute("/projects")({
   head: () => ({
     meta: [
-      { title: "Nairobi — Projects | The Professor" },
+      { title: "Nairobi — Projects | Shubh Gupta" },
       { name: "description", content: "Heists pulled off. A horizontal scroll through the catalog of crimes." },
       { property: "og:title", content: "Nairobi — Projects" },
       { property: "og:description", content: "Heists pulled off." },
