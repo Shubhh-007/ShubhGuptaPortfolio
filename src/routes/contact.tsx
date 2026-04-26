@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Send, Mail, MapPin, Github, Phone, Linkedin } from "lucide-react";
+import { Send, Mail, MapPin, Github, Phone, Linkedin, Loader2 } from "lucide-react";
 import { PageTransition } from "@/components/PageTransition";
 import { Reveal } from "@/components/Reveal";
+import emailjs from '@emailjs/browser';
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -18,6 +19,53 @@ export const Route = createFileRoute("/contact")({
 
 function Contact() {
   const [sent, setSent] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError("");
+    
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const name = formData.get('name') as string;
+    const email = formData.get('email') as string;
+    const message = formData.get('message') as string;
+
+    if (!name || !email || !message) {
+      setError("All fields are required for transmission.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      // STEPS TO CONNECT YOUR EMAILJS:
+      // 1. Create a free account at https://www.emailjs.com/
+      // 2. Add an Email Service (e.g. Gmail) and get your SERVICE_ID
+      // 3. Create an Email Template and get your TEMPLATE_ID
+      // 4. Get your PUBLIC_KEY from the Account settings
+      // 5. Replace the 3 strings below with your real keys!
+      await emailjs.send(
+        'service_o1zzu5p', 
+        'template_rz1m9sr', 
+        {
+          from_name: name,
+          from_email: email,
+          message: message,
+          to_name: 'Shubh Gupta',
+          reply_to: email,
+        },
+        '12Mi4frN5uVyugn7s' 
+      );
+      setSent(true);
+    } catch (err) {
+      console.error("EmailJS Error:", err);
+      setError("Transmission failed. The network might be compromised. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <PageTransition>
@@ -70,7 +118,7 @@ function Contact() {
 
           <Reveal delay={0.15}>
             <form
-              onSubmit={(e) => { e.preventDefault(); setSent(true); }}
+              onSubmit={handleSubmit}
               className="relative p-8 md:p-10 backdrop-blur-xl bg-card/40 border border-border space-y-6"
               style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.04)" }}
             >
@@ -83,22 +131,37 @@ function Contact() {
                 </div>
               ) : (
                 <>
-                  <Field label="Codename" name="name" placeholder="Your name" />
-                  <Field label="Channel" name="email" type="email" placeholder="you@email.com" />
+                  <Field label="Codename" name="name" placeholder="Your name" disabled={isSubmitting} />
+                  <Field label="Channel" name="email" type="email" placeholder="you@email.com" disabled={isSubmitting} />
                   <div>
                     <label className="font-display text-[10px] tracking-[0.4em] text-muted-foreground">MESSAGE</label>
                     <textarea
+                      name="message"
                       required rows={5}
                       placeholder="Outline the heist..."
-                      className="mt-2 w-full bg-input/50 border border-border px-4 py-3 text-foreground font-body focus:outline-none focus:border-heist-red focus:glow-red transition resize-none"
+                      disabled={isSubmitting}
+                      className="mt-2 w-full bg-input/50 border border-border px-4 py-3 text-foreground font-body focus:outline-none focus:border-heist-red focus:glow-red transition resize-none disabled:opacity-50"
                     />
                   </div>
+                  
+                  {error && <p className="text-heist-red text-sm font-body">{error}</p>}
+
                   <button
                     type="submit"
-                    className="group w-full inline-flex items-center justify-center gap-3 bg-red-grad px-8 py-4 font-display text-sm tracking-[0.3em] text-primary-foreground glow-red hover:glow-red-strong transition"
+                    disabled={isSubmitting}
+                    className="group w-full inline-flex items-center justify-center gap-3 bg-red-grad px-8 py-4 font-display text-sm tracking-[0.3em] text-primary-foreground glow-red hover:glow-red-strong transition disabled:opacity-70 disabled:cursor-not-allowed"
                   >
-                    SEND TRANSMISSION
-                    <Send className="w-4 h-4 group-hover:translate-x-1 transition" />
+                    {isSubmitting ? (
+                      <>
+                        ENCRYPTING...
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                      </>
+                    ) : (
+                      <>
+                        SEND TRANSMISSION
+                        <Send className="w-4 h-4 group-hover:translate-x-1 transition" />
+                      </>
+                    )}
                   </button>
                 </>
               )}
