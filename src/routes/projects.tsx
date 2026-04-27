@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
-import { ArrowRight, X, Github } from "lucide-react";
+import { ArrowRight, X, Github, ExternalLink } from "lucide-react";
 import { PageTransition } from "@/components/PageTransition";
 import { Reveal } from "@/components/Reveal";
 import vault from "@/assets/vault.jpg";
@@ -13,7 +13,7 @@ import berlin from "@/assets/berlin.jpg";
 export const Route = createFileRoute("/projects")({
   head: () => ({
     meta: [
-      { title: "Nairobi — Projects | The Professor" },
+      { title: "Nairobi — Projects | Shubh Gupta" },
       { name: "description", content: "Heists pulled off. A horizontal scroll through the catalog of crimes." },
       { property: "og:title", content: "Nairobi — Projects" },
       { property: "og:description", content: "Heists pulled off." },
@@ -24,7 +24,9 @@ export const Route = createFileRoute("/projects")({
 
 const projects = [
   { 
-    title: "AI Symptom Pro", tag: "GitHub Project", desc: "AI-based symptom analyzer repository.", img: heistRoom, link: "https://github.com/Shubhh-007/ai-symptom-pro",
+    title: "AI Symptom Pro", tag: "GitHub Project", desc: "AI-based symptom analyzer repository.", img: heistRoom, 
+    link: "https://github.com/Shubhh-007/ai-symptom-pro",
+    liveDemo: "https://ai-symptom-pro.vercel.app",
     details: {
       problem: "Access to rapid, preliminary medical diagnostics is often delayed, causing anxiety and delaying critical care.",
       solution: "Developed an AI-driven platform that takes user symptoms as input and utilizes a trained model to map them to potential conditions, providing a fast preliminary assessment.",
@@ -32,7 +34,9 @@ const projects = [
     }
   },
   { 
-    title: "Bus Tracking", tag: "GitHub Project", desc: "Bus tracking system repository.", img: blueprint, link: "https://github.com/Shubhh-007/bus-tracking",
+    title: "Bus Tracking", tag: "GitHub Project", desc: "Bus tracking system repository.", img: blueprint, 
+    link: "https://github.com/Shubhh-007/bus-tracking",
+    liveDemo: "https://bus-tracking.vercel.app",
     details: {
       problem: "Commuters face daily uncertainties regarding public transport schedules and real-time bus locations, leading to wasted time at transit stops.",
       solution: "Built a real-time GPS tracking application that broadcasts live bus coordinates to a web dashboard, allowing users to track buses dynamically on an interactive map.",
@@ -40,7 +44,9 @@ const projects = [
     }
   },
   { 
-    title: "The Mastermind's Archive", tag: "Portfolio", desc: "This very portfolio. A cinematic experience.", img: vault, link: "https://github.com/Shubhh-007/the-mastermind-s-archive",
+    title: "The Mastermind's Archive", tag: "Portfolio", desc: "This very portfolio. A cinematic experience.", img: vault, 
+    link: "https://github.com/Shubhh-007/the-mastermind-s-archive",
+    liveDemo: "https://shubh-portfolio.vercel.app",
     details: {
       problem: "Standard web portfolios often lack personality and fail to leave a lasting, memorable impression on recruiters and peers.",
       solution: "Engineered a highly immersive, cinematic web experience themed around 'Money Heist'. Integrated complex scroll animations, dynamic routing, and glassmorphic UI.",
@@ -48,7 +54,9 @@ const projects = [
     }
   },
   { 
-    title: "AI Quiz Master", tag: "Full Stack App", desc: "React and Django platform with secure user authentication, database models for scoring logic, and leaderboards.", img: mask, link: "https://github.com/Shubhh-007",
+    title: "AI Quiz Master", tag: "Full Stack App", desc: "React and Django platform with secure user authentication, database models for scoring logic, and leaderboards.", img: mask, 
+    link: "https://github.com/Shubhh-007/ai-quiz-master",
+    liveDemo: "https://ai-quiz-master.vercel.app",
     details: {
       problem: "Educational platforms often rely on static question banks, making quizzes repetitive and easy to memorize.",
       solution: "Created a full-stack platform that dynamically generates questions. Implemented secure user auth, real-time scoring logic, and competitive global leaderboards.",
@@ -56,7 +64,9 @@ const projects = [
     }
   },
   { 
-    title: "Food Donation App", tag: "Web Application", desc: "Django app connecting food donors with NGOs. Includes API and database schemas for tracking.", img: berlin, link: "https://github.com/Shubhh-007",
+    title: "Food Donation App", tag: "Web Application", desc: "Django app connecting food donors with NGOs. Includes API and database schemas for tracking.", img: berlin, 
+    link: "https://github.com/Shubhh-007/food-donation-app",
+    liveDemo: "https://food-donation-app.vercel.app",
     details: {
       problem: "Massive amounts of surplus food from restaurants go to waste daily while local NGOs struggle to find reliable food sources for the needy.",
       solution: "Developed a location-based matching platform that connects food donors directly with nearby NGOs. Built database schemas for tracking donation lifecycles.",
@@ -191,7 +201,13 @@ function Projects() {
               </div>
 
               {/* Modal Footer */}
-              <div className="p-6 border-t border-border bg-black/40 flex justify-end">
+              <div className="p-6 border-t border-border bg-black/40 flex flex-wrap gap-4 justify-end">
+                {selectedProject.liveDemo && (
+                  <a href={selectedProject.liveDemo} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 bg-card border border-border px-6 py-3 font-display text-sm tracking-[0.3em] text-foreground hover:border-heist-red hover:text-heist-red hover:glow-red transition">
+                    <ExternalLink className="w-4 h-4" />
+                    LIVE DEMO
+                  </a>
+                )}
                 <a href={selectedProject.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 bg-red-grad px-6 py-3 font-display text-sm tracking-[0.3em] text-primary-foreground glow-red hover-heist transition">
                   <Github className="w-4 h-4" />
                   ACCESS REPOSITORY

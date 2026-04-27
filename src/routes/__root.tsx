@@ -3,6 +3,7 @@ import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/r
 import appCss from "../styles.css?url";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { Navbar } from "@/components/Navbar";
+import { MusicPlayer } from "@/components/MusicPlayer";
 
 function NotFoundComponent() {
   return (
@@ -26,10 +27,10 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "The Professor — Mastermind Behind Code" },
+      { title: "Shubh Gupta — Full Stack Developer" },
       { name: "description", content: "A cinematic portfolio inspired by La Casa de Papel. Enter the heist." },
-      { name: "author", content: "The Professor" },
-      { property: "og:title", content: "The Professor — Mastermind Behind Code" },
+      { name: "author", content: "Shubh Gupta" },
+      { property: "og:title", content: "Shubh Gupta — Full Stack Developer" },
       { property: "og:description", content: "A cinematic portfolio inspired by La Casa de Papel." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
@@ -65,6 +66,7 @@ function RootComponent() {
     <>
       <LoadingScreen />
       <Navbar />
+      <MusicPlayer />
       <Outlet />
     </>
   );

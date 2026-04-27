@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Download } from "lucide-react";
+import resumePdf from "@/assets/Shubh_Resume.pdf";
 
 const links = [
   { to: "/", label: "Professor", sub: "Home" },
@@ -53,6 +54,15 @@ export function Navbar() {
                 <span className="block text-[10px] text-heist-red opacity-0 group-hover:opacity-100 transition tracking-wider">{l.sub}</span>
               </Link>
             ))}
+            <a
+              href={resumePdf}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-6 flex items-center gap-2 border border-heist-red px-5 py-2.5 font-display text-xs tracking-[0.2em] text-heist-red hover:bg-heist-red hover:text-primary-foreground transition glow-red group"
+            >
+              <Download className="w-4 h-4 group-hover:-translate-y-1 transition" />
+              DOWNLOAD DOSSIER
+            </a>
           </nav>
           <button
             aria-label="Menu"
@@ -90,6 +100,21 @@ export function Navbar() {
                   </Link>
                 </motion.div>
               ))}
+              <motion.div
+                initial={{ y: 30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: links.length * 0.07 }}
+              >
+                <a
+                  href={resumePdf}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-8 flex items-center justify-center gap-3 bg-red-grad px-10 py-5 font-display text-lg tracking-[0.3em] text-primary-foreground glow-red"
+                >
+                  <Download className="w-6 h-6" />
+                  DOWNLOAD DOSSIER
+                </a>
+              </motion.div>
             </nav>
           </motion.div>
         )}

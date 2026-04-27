@@ -5,7 +5,7 @@ import { Reveal } from "@/components/Reveal";
 export const Route = createFileRoute("/journey")({
   head: () => ({
     meta: [
-      { title: "Tokyo — Journey | The Professor" },
+      { title: "Tokyo — Journey | Shubh Gupta" },
       { name: "description", content: "The story so far. Seasons of the heist, episode by episode." },
       { property: "og:title", content: "Tokyo — Journey" },
       { property: "og:description", content: "The story so far." },

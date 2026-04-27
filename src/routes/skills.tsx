@@ -8,7 +8,7 @@ import vault from "@/assets/vault.jpg";
 export const Route = createFileRoute("/skills")({
   head: () => ({
     meta: [
-      { title: "Denver — Arsenal | The Professor" },
+      { title: "Denver — Arsenal | Shubh Gupta" },
       { name: "description", content: "Heist preparation interface. The digital arsenal behind every operation." },
       { property: "og:title", content: "Denver — Arsenal" },
       { property: "og:description", content: "Heist preparation interface." },
