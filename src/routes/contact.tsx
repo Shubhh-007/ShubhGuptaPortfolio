@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Send, Mail, MapPin, Github, Linkedin, FileDown } from "lucide-react";
+import { Send, Mail, MapPin, Github, Phone, Linkedin, FileDown } from "lucide-react";
 import { PageTransition } from "@/components/PageTransition";
 import { Reveal } from "@/components/Reveal";
 
@@ -27,17 +27,18 @@ function Contact() {
         <div className="relative grid md:grid-cols-2 gap-16 items-start">
           <div>
             <Reveal>
-              <p className="font-display text-xs tracking-[0.5em] text-heist-red mb-3">▎ FILE 06 · HELSINKI</p>
+              <p className="font-display text-xs tracking-[0.5em] text-heist-red mb-3">▎ FILE 06 · INITIATE</p>
               <h1 className="font-display text-6xl md:text-9xl leading-[0.9] tracking-tight">JOIN THE<br/><span className="text-heist-red text-glow-red">HEIST</span>.</h1>
             </Reveal>
 
             <Reveal delay={0.1} className="mt-10 space-y-6 text-muted-foreground">
-              <p className="text-lg leading-relaxed">Got a plan? A project? An impossible idea? The crew is recruiting. Drop a message and I'll get back faster than the police can react.</p>
+              <p className="text-lg leading-relaxed">Got a plan? A project? An impossible idea? Drop a message and let's build something production-ready together.</p>
             </Reveal>
 
             <Reveal delay={0.2} className="mt-12 space-y-5">
               {[
                 { icon: Mail, label: "Email", val: "shubhgupta1707@gmail.com", href: "mailto:shubhgupta1707@gmail.com" },
+                { icon: Phone, label: "Phone", val: "+91-75719-21707", href: "tel:+917571921707" },
                 { icon: MapPin, label: "Base", val: "Greater Noida, Uttar Pradesh" },
                 { icon: Github, label: "Code", val: "https://github.com/Shubhh-007", href: "https://github.com/Shubhh-007" },
                 { icon: Linkedin, label: "LinkedIn", val: "www.linkedin.com/in/shubhh-gupta", href: "https://www.linkedin.com/in/shubhh-gupta" },
@@ -92,7 +93,7 @@ function Contact() {
               {sent ? (
                 <div className="py-12 text-center">
                   <p className="font-display text-3xl text-heist-red text-glow-red">MESSAGE RECEIVED</p>
-                  <p className="mt-3 text-muted-foreground">The Professor is reviewing the plan. Stay close to the radio.</p>
+                  <p className="mt-3 text-muted-foreground">Shubh is reviewing the plan. Stay close to the radio.</p>
                 </div>
               ) : (
                 <>

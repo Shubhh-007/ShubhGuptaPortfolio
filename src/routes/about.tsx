@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform, useMotionValue, useSpring } from "fram
 import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { PageTransition } from "@/components/PageTransition";
 import hallway from "@/assets/hallway.jpg";
-import berlin from "@/assets/berlin.jpg";
+import berlin from "@/assets/image.png";
 import dali from "@/assets/dali-outline.png";
 
 export const Route = createFileRoute("/about")({
@@ -264,7 +264,7 @@ function About() {
               transition={{ delay: 0.3, duration: 0.6 }}
               className="font-mono text-xs tracking-[0.5em] text-heist-red mb-6"
             >
-              <Glitch>▎ FILE 02 · BERLIN · CLASSIFIED</Glitch>
+              <Glitch>▎ FILE 02 · SHUBH · CLASSIFIED</Glitch>
             </motion.p>
             <motion.h1
               initial={{ opacity: 0, y: 40 }}
@@ -367,7 +367,7 @@ function About() {
 
               {/* hud */}
               <div className="absolute bottom-3 left-3 right-3 flex justify-between font-mono text-[9px] tracking-[0.3em] text-heist-red">
-                <span>ID_001 · BERLIN</span>
+                <span>ID_001 · SHUBH</span>
                 <span className="animate-pulse-red">● ACTIVE</span>
               </div>
               <div className="absolute top-3 left-3 font-mono text-[9px] tracking-[0.3em] text-muted-foreground">
@@ -387,39 +387,39 @@ function About() {
               label="SUBJECT STATEMENT"
               delay={0}
               lines={[
-                "> In this heist, I play my role differently.",
-                "> I don't break into vaults.",
-                "> I build the systems that protect them.",
+                "> Objective: Build production-ready web applications using JavaScript, React, and Django.",
+                "> Focus: clean frontend architecture, reliable backend logic.",
+                "> Real-world problem solving in collaborative development teams.",
               ]}
             />
             <LogEntry
-              label="BEHAVIOR ANALYSIS"
+              label="EXPERIENCE: YBI FOUNDATION"
               delay={400}
               lines={[
-                "> Treats every project as a precision operation.",
-                "> Architecture, design, execution — calculated.",
-                "> Obsesses over details that make products feel inevitable.",
-                "> No improvisation. No noise. Only the plan.",
+                "> Python Intern (Aug 2024 - 2 Weeks)",
+                "> Developed Python scripts to solve logic-based and data-processing problems.",
+                "> Worked with file handling and basic error handling to improve code reliability.",
+                "> Debugged and optimized Python programs for correctness and readability.",
               ]}
             />
             <LogEntry
-              label="PROFILE NOTES"
+              label="EDUCATION PROFILE"
               delay={800}
               lines={[
-                "> Renders pixel-perfect interfaces.",
-                "> Wires resilient backends under pressure.",
-                "> Reverse-engineers film scores after dark.",
-                "> Considers Tuesday a weekend. Espresso required.",
+                "> B.Tech (CSE) @ NIET (2023-2027) | CGPA: 8.0",
+                "> XII (PCM) @ MG Inter College (2021-2022) | 92%",
+                "> X @ Saraswati Shishu Mandir (2019-2020) | 92%",
+                "> Certifications: Python Programming — YBI Foundation",
               ]}
             />
 
             {/* metrics */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-heist-red/30 border border-heist-red/30">
               {[
-                { k: "5+", v: "YRS ACTIVE" },
-                { k: "40+", v: "OPERATIONS" },
+                { k: "8.0", v: "CGPA" },
+                { k: "1+", v: "INTERNSHIP" },
                 { k: "12", v: "STACKS" },
-                { k: "∞", v: "ESPRESSO" },
+                { k: "2+", v: "PROJECTS" },
               ].map((s) => (
                 <div key={s.v} className="bg-background p-5">
                   <p className="font-display text-4xl md:text-5xl text-heist-red text-glow-red">{s.k}</p>

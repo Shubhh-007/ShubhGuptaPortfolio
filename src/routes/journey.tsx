@@ -15,11 +15,11 @@ export const Route = createFileRoute("/journey")({
 });
 
 const seasons = [
-  { season: "Season 1", year: "2019", title: "The Awakening", desc: "Wrote my first line of code. Fell in love with the puzzle. Built static sites that nobody asked for." },
-  { season: "Season 2", year: "2020", title: "Joining The Crew", desc: "First freelance gig. Learned what 'production' actually means. Shipped, broke, fixed, shipped again." },
-  { season: "Season 3", year: "2021", title: "The Big Score", desc: "Joined a startup. Built dashboards used by thousands. Discovered design systems were my obsession." },
-  { season: "Season 4", year: "2023", title: "Going Solo", desc: "Launched independent products. Mastered full-stack architecture. Started teaching what I learned." },
-  { season: "Season 5", year: "2025", title: "The Final Heist", desc: "Now crafting cinematic experiences and tooling that bends reality. The heist continues." },
+  { season: "Season 1", year: "2019-2020", title: "Secondary School", desc: "Completed Class X from Saraswati Shishu Mandir Sr. Sec. School with 92%. Built foundational logic and discipline." },
+  { season: "Season 2", year: "2021-2022", title: "Senior Secondary", desc: "Completed Class XII (PCM) from MG Inter College, Gorakhpur with 92%. Dived deeper into mathematics and sciences." },
+  { season: "Season 3", year: "2023-2027", title: "B.Tech Computer Science", desc: "Pursuing B.Tech CSE at NIET, Greater Noida (8.0 CGPA). Mastered core concepts, DSA, and modern web frameworks." },
+  { season: "Season 4", year: "Aug 2024", title: "Python Intern", desc: "Worked as a Python Intern at YBI Foundation. Developed scripts, optimized data-processing, and earned certification." },
+  { season: "Season 5", year: "Present", title: "Production Ready", desc: "Building full-stack platforms like AI Quiz Master and Food Donation Apps. Looking for the next big score." },
 ];
 
 function Journey() {
@@ -27,7 +27,7 @@ function Journey() {
     <PageTransition>
       <section className="max-w-7xl mx-auto px-6 py-20 md:py-32">
         <Reveal className="mb-20">
-          <p className="font-display text-xs tracking-[0.5em] text-heist-red mb-3">▎ FILE 04 · TOKYO</p>
+          <p className="font-display text-xs tracking-[0.5em] text-heist-red mb-3">▎ FILE 04 · TIMELINE</p>
           <h1 className="font-display text-6xl md:text-9xl leading-[0.9] tracking-tight">THE <span className="text-heist-red">STORY</span><br/>SO FAR.</h1>
         </Reveal>
 

@@ -26,18 +26,16 @@ type Skill = {
 };
 
 const SKILLS: Skill[] = [
-  { name: "React / Next.js", level: 95, category: "FRONTEND", desc: "Component architectures, SSR, RSC, edge rendering. The face of every operation.", ops: ["Vault Dashboard", "Mint Web App", "Heist Console"] },
-  { name: "TypeScript", level: 92, category: "FRONTEND", desc: "Type-safe payloads. No undefined left behind.", ops: ["All ops since 2020"] },
-  { name: "Tailwind / CSS", level: 90, category: "FRONTEND", desc: "Atomic styling, design tokens, motion-first interfaces.", ops: ["Berlin UI Kit", "Atlas Studio"] },
-  { name: "Framer Motion", level: 85, category: "FRONTEND", desc: "Cinematic micro-interactions. Choreographing every cursor move.", ops: ["This site", "Cinema Reel"] },
-  { name: "Node.js", level: 90, category: "BACKEND", desc: "Runtime infiltration. Streaming, queues, edge workers.", ops: ["Token Vault", "Pulse API"] },
-  { name: "PostgreSQL", level: 82, category: "BACKEND", desc: "Relational lockboxes. Indexed, partitioned, encrypted.", ops: ["Ledger DB", "Mint Core"] },
-  { name: "REST / GraphQL", level: 88, category: "BACKEND", desc: "Two protocols. One mission. Get the data out clean.", ops: ["Atlas Gateway", "Console API"] },
-  { name: "Edge Functions", level: 80, category: "BACKEND", desc: "Globally distributed payloads. Sub-50ms anywhere.", ops: ["Pulse Edge", "Auth Relay"] },
-  { name: "Git / GitHub", level: 95, category: "TOOLS", desc: "Version control. Every commit is an alibi.", ops: ["Daily standard"] },
-  { name: "Figma", level: 80, category: "TOOLS", desc: "Blueprints before bullets. Pixel-perfect coordination.", ops: ["Berlin UI Kit", "Reel Brand"] },
-  { name: "Docker", level: 75, category: "TOOLS", desc: "Containerized infiltration. Same anywhere.", ops: ["Mint Stack", "Pulse Deploy"] },
-  { name: "Vite / Webpack", level: 88, category: "TOOLS", desc: "Build pipelines. Fast in. Fast out.", ops: ["This site", "Atlas Studio"] },
+  { name: "React", level: 90, category: "FRONTEND", desc: "Component architectures and dynamic interfaces.", ops: ["AI Quiz Master"] },
+  { name: "JavaScript", level: 95, category: "FRONTEND", desc: "Core frontend logic and interactivity.", ops: ["AI Quiz Master", "Food Donation App"] },
+  { name: "HTML5 / CSS3", level: 90, category: "FRONTEND", desc: "Semantic markup and responsive styling.", ops: ["Food Donation App"] },
+  { name: "Python", level: 92, category: "BACKEND", desc: "Data processing, backend logic, and scripts.", ops: ["AI Quiz Master", "YBI Foundation"] },
+  { name: "Django", level: 85, category: "BACKEND", desc: "Robust backend API and database schemas.", ops: ["AI Quiz Master", "Food Donation App"] },
+  { name: "SQL", level: 88, category: "BACKEND", desc: "Relational database querying and management.", ops: ["AI Quiz Master", "Food Donation App"] },
+  { name: "C++", level: 80, category: "BACKEND", desc: "System-level logic and foundational programming.", ops: ["DSA"] },
+  { name: "Git & GitHub", level: 90, category: "TOOLS", desc: "Version control and collaborative workflows.", ops: ["All Projects"] },
+  { name: "NumPy", level: 85, category: "TOOLS", desc: "Scientific computing and array processing.", ops: ["Data Analysis"] },
+  { name: "Basic DSA", level: 80, category: "TOOLS", desc: "Algorithms, logic-based problem solving.", ops: ["YBI Foundation"] },
 ];
 
 const CATEGORY_ICON: Record<string, typeof Code2> = {

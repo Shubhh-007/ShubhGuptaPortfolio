@@ -22,10 +22,10 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const NAME = "The Professor";
-const TAGLINE = "The Mastermind Behind Code";
+const NAME = "Shubh Gupta";
+const TAGLINE = "Full Stack Web Developer";
 
-const words = ["Hi,", "I'm", "The", "Professor."];
+const words = ["Hi,", "I'm", "Shubh", "Gupta."];
 
 function Index() {
   const ref = useRef<HTMLDivElement>(null);
@@ -82,7 +82,7 @@ function Index() {
 
         {/* Vertical side text */}
         <div className="absolute left-6 top-1/2 -translate-y-1/2 -rotate-90 origin-left font-display text-xs tracking-[0.5em] text-muted-foreground hidden md:block">
-          CODENAME · PROFESSOR
+          CODENAME · SHUBH
         </div>
         <div className="absolute right-6 top-1/2 -translate-y-1/2 rotate-90 origin-right font-display text-xs tracking-[0.5em] text-heist-red hidden md:block">
           LA RESISTENCIA
@@ -92,7 +92,7 @@ function Index() {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 2.2 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
             className="font-display text-xs md:text-sm tracking-[0.5em] text-heist-red mb-6"
           >
             ▎ THE HEIST BEGINS
@@ -102,10 +102,10 @@ function Index() {
             {words.map((w, i) => (
               <motion.span
                 key={i}
-                initial={{ opacity: 0, y: 60 }}
+                initial={{ opacity: 0, y: 100 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 2.4 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-                className={`inline-block mr-4 ${w === "Professor." ? "text-heist-red text-glow-red" : ""}`}
+                transition={{ duration: 0.8, delay: 1.2 + i * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                className={`inline-block mr-4 ${w === "Gupta." ? "text-heist-red text-glow-red" : ""}`}
               >
                 {w}
               </motion.span>
@@ -115,7 +115,7 @@ function Index() {
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 3.2 }}
+            transition={{ duration: 0.8, delay: 2.2 }}
             className="mt-8 font-body text-lg md:text-2xl text-muted-foreground tracking-wide"
           >
             {TAGLINE}
@@ -124,7 +124,7 @@ function Index() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 3.5 }}
+            transition={{ duration: 0.8, delay: 2.5 }}
             className="mt-12 flex items-center justify-center gap-4 flex-wrap"
           >
             <Link
@@ -138,7 +138,7 @@ function Index() {
               to="/about"
               className="inline-flex items-center gap-3 border border-border px-8 py-4 font-display text-sm tracking-[0.3em] text-foreground hover:border-heist-red hover:text-heist-red transition"
             >
-              MEET THE PROFESSOR
+              MEET SHUBH GUPTA
             </Link>
           </motion.div>
         </motion.div>
@@ -147,7 +147,7 @@ function Index() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 4 }}
+          transition={{ delay: 3.0 }}
           className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
         >
           <span className="font-display text-[10px] tracking-[0.4em] text-muted-foreground">SCROLL</span>
@@ -232,7 +232,7 @@ function Index() {
             "A plan without flaws is just a <span className="text-heist-red text-glow-red">dream</span>.
             Mine has flaws — that's why it works."
           </p>
-          <p className="mt-8 font-display text-xs tracking-[0.5em] text-muted-foreground">— THE PROFESSOR</p>
+          <p className="mt-8 font-display text-xs tracking-[0.5em] text-muted-foreground">— SHUBH GUPTA</p>
         </Reveal>
       </section>
 
