@@ -1,17 +1,14 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Redirecting...</title>
-  <script>
-    var path = window.location.pathname;
-    if (path.startsWith('/the-mastermind-s-archive')) {
-      path = path.replace('/the-mastermind-s-archive', '') || '/';
-    }
-    window.location.href = '/the-mastermind-s-archive/' + (path === '/' ? '' : path);
-  </script>
-</head>
-<body>
-  <p>Redirecting to <a id="link"></a>...</p>
-</body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Master's Archive</title>
+    <link rel="icon" type="image/svg+xml" href="/the-mastermind-s-archive/assets/image-CwjGVK6p.png" />
+    <link rel="stylesheet" href="/the-mastermind-s-archive/assets/styles-Bt_7Bz_e.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/the-mastermind-s-archive/assets/index-C-gm9KOK.js"></script>
+  </body>
 </html>

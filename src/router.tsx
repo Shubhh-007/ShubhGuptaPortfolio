@@ -61,7 +61,6 @@ export const getRouter = () => {
     scrollRestoration: true,
     defaultPreloadStaleTime: 0,
     defaultErrorComponent: DefaultErrorComponent,
-    basepath: "/the-mastermind-s-archive",
   });
 
   return router;
