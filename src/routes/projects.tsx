@@ -1,4 +1,3 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { ArrowRight, X, Github, ExternalLink } from "lucide-react";
@@ -9,18 +8,6 @@ import heistRoom from "@/assets/heist-room.jpg";
 import blueprint from "@/assets/blueprint.jpg";
 import mask from "@/assets/mask.jpg";
 import berlin from "@/assets/berlin.jpg";
-
-export const Route = createFileRoute("/projects")({
-  head: () => ({
-    meta: [
-      { title: "Nairobi — Projects | Shubh Gupta" },
-      { name: "description", content: "Heists pulled off. A horizontal scroll through the catalog of crimes." },
-      { property: "og:title", content: "Nairobi — Projects" },
-      { property: "og:description", content: "Heists pulled off." },
-    ],
-  }),
-  component: Projects,
-});
 
 const projects = [
   { 
@@ -75,7 +62,7 @@ const projects = [
   },
 ];
 
-function Projects() {
+export default function Projects() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref });
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);

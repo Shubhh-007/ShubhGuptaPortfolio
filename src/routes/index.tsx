@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { ArrowDown, ArrowRight } from "lucide-react";
@@ -10,24 +10,12 @@ import heistRoom from "@/assets/heist-room.jpg";
 import blueprint from "@/assets/blueprint.jpg";
 import vault from "@/assets/vault.jpg";
 
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Shubh Gupta — Full Stack Developer" },
-      { name: "description", content: "Enter the heist. A cinematic portfolio of code, craft, and chaos." },
-      { property: "og:title", content: "Shubh Gupta — Full Stack Developer" },
-      { property: "og:description", content: "Enter the heist. A cinematic portfolio." },
-    ],
-  }),
-  component: Index,
-});
-
 const NAME = "Shubh Gupta";
 const TAGLINE = "Full Stack Web Developer";
 
 const words = ["Hi,", "I'm", "Shubh", "Gupta."];
 
-function Index() {
+export default function Index() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);

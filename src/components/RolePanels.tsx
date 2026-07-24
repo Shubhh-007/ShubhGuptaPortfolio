@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useRef, useState, type MouseEvent } from "react";
 import { ArrowRight, User, Code2, FolderGit2, Clock, type LucideIcon } from "lucide-react";

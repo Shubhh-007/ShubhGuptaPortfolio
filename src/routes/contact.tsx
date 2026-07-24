@@ -1,23 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Send, Mail, MapPin, Github, Phone, Linkedin, FileDown, Loader2 } from "lucide-react";
 import { PageTransition } from "@/components/PageTransition";
 import { Reveal } from "@/components/Reveal";
 import emailjs from '@emailjs/browser';
 
-export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Helsinki — Contact | Shubh Gupta" },
-      { name: "description", content: "Join the heist. Get in touch with the Professor." },
-      { property: "og:title", content: "Helsinki — Contact" },
-      { property: "og:description", content: "Join the heist." },
-    ],
-  }),
-  component: Contact,
-});
-
-function Contact() {
+export default function Contact() {
   const [sent, setSent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
@@ -187,13 +174,13 @@ function Contact() {
   );
 }
 
-function Field({ label, name, type = "text", placeholder }: { label: string; name: string; type?: string; placeholder?: string }) {
+function Field({ label, name, type = "text", placeholder, disabled }: { label: string; name: string; type?: string; placeholder?: string; disabled?: boolean }) {
   return (
     <div>
       <label htmlFor={name} className="font-display text-[10px] tracking-[0.4em] text-muted-foreground">{label.toUpperCase()}</label>
       <input
-        id={name} name={name} type={type} required placeholder={placeholder}
-        className="mt-2 w-full bg-input/50 border border-border px-4 py-3 text-foreground font-body focus:outline-none focus:border-heist-red focus:glow-red transition"
+        id={name} name={name} type={type} required placeholder={placeholder} disabled={disabled}
+        className="mt-2 w-full bg-input/50 border border-border px-4 py-3 text-foreground font-body focus:outline-none focus:border-heist-red focus:glow-red transition disabled:opacity-50"
       />
     </div>
   );

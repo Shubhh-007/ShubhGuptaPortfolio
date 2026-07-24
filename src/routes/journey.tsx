@@ -1,18 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { PageTransition } from "@/components/PageTransition";
 import { Reveal } from "@/components/Reveal";
-
-export const Route = createFileRoute("/journey")({
-  head: () => ({
-    meta: [
-      { title: "Tokyo — Journey | Shubh Gupta" },
-      { name: "description", content: "The story so far. Seasons of the heist, episode by episode." },
-      { property: "og:title", content: "Tokyo — Journey" },
-      { property: "og:description", content: "The story so far." },
-    ],
-  }),
-  component: Journey,
-});
 
 const seasons = [
   { season: "Season 1", year: "2019-2020", title: "Secondary School", desc: "Completed Class X from Saraswati Shishu Mandir Sr. Sec. School with 92%. Built foundational logic and discipline." },
@@ -22,7 +9,7 @@ const seasons = [
   { season: "Season 5", year: "Present", title: "Production Ready", desc: "Building full-stack platforms like AI Quiz Master and Food Donation Apps. Looking for the next big score." },
 ];
 
-function Journey() {
+export default function Journey() {
   return (
     <PageTransition>
       <section className="max-w-7xl mx-auto px-6 py-20 md:py-32">

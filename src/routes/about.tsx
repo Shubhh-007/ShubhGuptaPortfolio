@@ -1,22 +1,9 @@
-import { createFileRoute } from '@tanstack/react-router'
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
 import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { PageTransition } from "@/components/PageTransition";
 import hallway from "@/assets/hallway.jpg";
 import berlin from "@/assets/image.png";
 import dali from "@/assets/dali-outline.png";
-
-export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
-      { title: "Berlin — File 02 | Classified Identity" },
-      { name: "description", content: "Surveillance file 02. Subject: Berlin. The man behind the mask." },
-      { property: "og:title", content: "FILE 02 — BERLIN" },
-      { property: "og:description", content: "You don't see me. You see the system I built." },
-    ],
-  }),
-  component: About,
-});
 
 /* ---------- typing effect ---------- */
 function Typed({ text, delay = 0, speed = 22, className = "", onDone }: { text: string; delay?: number; speed?: number; className?: string; onDone?: () => void }) {
@@ -87,7 +74,7 @@ function Glitch({ children, className = "" }: { children: React.ReactNode; class
   );
 }
 
-function About() {
+export default function About() {
   const root = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: root, offset: ["start start", "end end"] });
 

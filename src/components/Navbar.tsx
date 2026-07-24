@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Download } from "lucide-react";
 import resumePdf from "@/assets/Shubh_Resume.pdf";
@@ -16,7 +16,7 @@ const links = [
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const { location } = useRouterState();
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
@@ -43,16 +43,19 @@ export function Navbar() {
           </Link>
           <nav className="hidden lg:flex items-center gap-8">
             {links.map((l) => (
-              <Link
+              <NavLink
                 key={l.to}
                 to={l.to}
-                className="group relative font-display text-sm tracking-[0.3em] uppercase text-muted-foreground hover:text-foreground transition"
-                activeProps={{ className: "text-foreground" }}
-                activeOptions={{ exact: true }}
+                end={l.to === "/"}
+                className={({ isActive }) =>
+                  `group relative font-display text-sm tracking-[0.3em] uppercase transition ${
+                    isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                  }`
+                }
               >
                 <span>{l.label}</span>
                 <span className="block text-[10px] text-heist-red opacity-0 group-hover:opacity-100 transition tracking-wider">{l.sub}</span>
-              </Link>
+              </NavLink>
             ))}
             <a
               href={resumePdf}
